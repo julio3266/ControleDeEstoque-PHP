@@ -1,0 +1,43 @@
+<section>
+    <div class="col-md-12">
+        <div class="card card-body">
+            <h2>Usuários</h2>
+            <div class="text-right">
+                <a href="/novo-usuario" class="btn btn-outline-primary">Nova Usuário</a>
+            </div>
+
+            <table class="table table-hover table-striped mt-4">
+                <thead class="thead-dark text-center">
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </thead>
+                <tbody class="text-center">
+                <?php
+                    foreach ($data['users'] as $user) {
+                        $status = '<span class="badge badge-success">Ativo</span>';
+
+                        if (!$user->getStatus()) {
+                            $status = '<span class="badge badge-danger">Inativo</span>';
+                        }
+
+                        echo "
+                        <tr>
+                            <td>{$user->getName()}</td>
+                            <td>{$user->getEmail()}</td>
+                            <td>{$status}</td>
+                            <td>
+                                <a href='/excluir-usuario' class='btn btn-danger'>Excluir</a>
+                                <a href='/editar-usuario' class='btn btn-warning'>Editar</a>
+                            </td>
+                        </tr>
+                        ";
+                    }
+                ?>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
